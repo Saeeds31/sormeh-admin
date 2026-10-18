@@ -235,7 +235,11 @@ const routes = [
     name: "articles-categories-edit",
     component: () => import("@/views/articles/Category/edit.vue"),
   },
-
+  {
+    path: "/articles/images",
+    name: "articles-images",
+    component: () => import("@/views/articles/imagelib.vue"),
+  },
   {
     path: "/reports/users",
     name: "reports-users",
@@ -305,7 +309,7 @@ const routes = [
     component: () => import("@/views/orders/problematic.vue"),
   },
   //
-   {
+  {
     path: "/channels",
     name: "channels",
     component: () => import("@/views/channels/ChannelsList.vue"),

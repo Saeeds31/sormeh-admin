@@ -418,6 +418,11 @@ const menuItems = ref([
         link: "/articles/list",
         icon: "bi-file-text"
       },
+      {
+        name: "لیست تصاویر",
+        permissions: ['article_view'],
+        link: "/articles/images", icon: "bi-image"
+      },
     ],
   },
   {
