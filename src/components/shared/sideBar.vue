@@ -8,7 +8,7 @@
     <!-- Sidebar -->
     <div class="sidebar d-flex flex-column" :class="{ 'sidebar-open': mobileOpen }">
       <!-- Logo -->
-      <router-link to="/dashboard" class="p-3 d-flex justify-content-center border-bottom logo-wrapper">
+      <router-link to="/dashboard" class="p-3 d-flex justify-content-center border-bottom logo-wrapper bg-white">
         <img src="../../assets/images/logo.png" alt="Logo" class="img-fluid" />
       </router-link>
 

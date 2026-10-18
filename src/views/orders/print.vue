@@ -9,7 +9,7 @@
                         <img src="@/assets/images/logo.png" width="72" alt="">
                     </div>
                     <div>
-                        <strong>ماه ستی</strong>
+                        <strong>سرمه </strong>
                         <span>مرکز مدیریت سفارشات</span>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                             <div class="box box-store">
                                 <div class="store-header">
                                     <div class="store-title">
-                                        <strong>فروشگاه ماه ستی</strong>
+                                        <strong>فروشگاه سرمه </strong>
                                     </div>
                                     <div class="store-date">
                                         <span>تاریخ چاپ:</span>
@@ -86,7 +86,7 @@
                                 <div class="store-row">
                                     <div class="store-cell">
                                         <span class="cell-label">عنوان وبسایت:</span>
-                                        <strong class="cell-value">mahseti.shop</strong>
+                                        <strong class="cell-value">sormeh-online.com</strong>
                                     </div>
                                     <div class="store-cell">
                                         <span class="cell-label">شناسه سفارش:</span>
@@ -290,12 +290,12 @@
                                         </div>
                                         <div>
                                             <strong>اطلاعات فرستنده:</strong>
-                                            <span>ماه ستی</span>
+                                            <span>سرمه </span>
                                         </div>
                                     </div>
                                     <div class="label-number">
                                         <small>website</small>
-                                        <strong>www.mahseti.shop</strong>
+                                        <strong>www.sormeh-online.com</strong>
                                     </div>
                                 </div>
 
@@ -305,7 +305,7 @@
                                         <i class="bi bi-arrow-down-circle-fill"></i>
                                         <span>ارسال از</span>
                                     </div>
-                                    <div class="receiver-name">فروشگاه ماه ستی</div>
+                                    <div class="receiver-name">فروشگاه سرمه </div>
                                     <div class="receiver-phone">
                                         <i class="bi bi-telephone-fill"></i>
                                         ۰۹۳۳۵۸۱۴۴۷۵
@@ -321,7 +321,7 @@
 
                                 <div class="label-bottom">
                                     <div>
-                                        <small>mahseti</small>
+                                        <small>sormeh-online</small>
                                         <strong>فروشگاه لباس زیر</strong>
                                     </div>
                                     <div class="label-price">
@@ -395,9 +395,9 @@
             <!-- PRINT FOOTER -->
             <div class="print-footer">
                 <div class="footer-line"></div>
-                <strong>ماه ستی</strong>
+                <strong>سرمه </strong>
                 <span>این فاکتور توسط سیستم مدیریت سفارشات صادر شده است.</span>
-                <small>www.mahseti.shop</small>
+                <small>www.sormeh-online.com</small>
             </div>
 
         </div>
@@ -466,8 +466,8 @@ const getTotalQuantity = (order) => {
 
 // ✅ اطلاعات ثابت فروشگاه
 const STORE_INFO = {
-    title: 'فروشگاه ماه ستی',
-    website: 'mahseti.shop',
+    title: 'فروشگاه سرمه ',
+    website: 'sormeh-online.com',
     phone: '09375015769',
     address: 'گلستان - گرگان - خیابان پنج آذر - آذر چهارم - جنب داروخانه'
 };

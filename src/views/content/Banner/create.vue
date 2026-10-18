@@ -106,7 +106,7 @@ const form = reactive({
 })
 let positions = [
   { id: 'after_products', label: "بعد از محصولات" },
-  { id: 'before_about', label: "قبل از درباره ماه ستی" },
+  { id: 'before_about', label: "قبل از درباره سرمه " },
 ];
 let loading = ref(false);
 function imageLoaded(files) {

@@ -54,7 +54,7 @@
 
       <!-- Footer -->
       <div class="footer-text mt-4 text-center">
-        <small class="text-muted">© 2024 - تمامی حقوق  برای ماه ستی محفوظ است</small>
+        <small class="text-muted">© 2024 - تمامی حقوق  برای سرمه  محفوظ است</small>
       </div>
     </b-card>
   </div>

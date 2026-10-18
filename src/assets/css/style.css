@@ -133,3 +133,967 @@ input.multiselect__input {
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
   padding: 1rem !important;
 }
+/* sormeh theme — Lavender Purple */
+/* =========================================================
+   تم بنفش/یاسی - Javid Baby Admin Theme (High Contrast)
+   Base: #9374C9
+   ========================================================= */
+
+:root {
+  /* بنفش‌های اصلی */
+  --jb-pink-50:  #f6f3fc;
+  --jb-pink-100: #ece5f8;
+  --jb-pink-200: #d9ccf1;
+  --jb-pink-300: #c3afe8;
+  --jb-pink-400: #ad92df;
+  --jb-pink-500: #9374c9;   /* رنگ اصلی */
+  --jb-pink-600: #7a59b3;
+  --jb-pink-700: #634594;
+  --jb-pink-800: #4c3473;
+  --jb-pink-900: #352452;
+
+  /* مکمل‌ها */
+  --jb-fuchsia: #7e57c2;    /* بنفش عمیق‌تر برای accent */
+  --jb-purple:  #5e3d99;
+  --jb-plum:    #3d2763;
+
+  /* سایدبار تیره */
+  --jb-side-bg-1: #1f1433;
+  --jb-side-bg-2: #35204f;
+  --jb-side-bg-3: #281a3f;
+  --jb-side-active-1: #9374c9;
+  --jb-side-active-2: #7e57c2;
+  --jb-side-text: #ece5f8;
+  --jb-side-text-soft: #b9a6dd;
+
+  /* متن‌ها */
+  --jb-text: #2e1f4a;
+  --jb-text-soft: #5a4382;
+  --jb-text-muted: #8a78ad;
+
+  /* پس‌زمینه */
+  --jb-bg: #f6f3fc;
+  --jb-border: #c3afe8;
+  --jb-white: #ffffff;
+}
+
+/* =========================================================
+   پایه
+   ========================================================= */
+body {
+  background: linear-gradient(
+    135deg,
+    #f6f3fc 0%,
+    #ece5f8 50%,
+    #ddd0f2 100%
+  ) !important;
+  background-attachment: fixed !important;
+  font-family: "Vazirmatn", sans-serif;
+  color: var(--jb-text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--jb-pink-100);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--jb-pink-400), var(--jb-fuchsia));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--jb-pink-500), var(--jb-pink-700));
+}
+
+/* =========================================================
+   کارت‌ها
+   ========================================================= */
+.card,
+.b-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    0 20px 45px rgba(147, 116, 201, 0.15),
+    0 8px 20px rgba(173, 146, 223, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #ece5f8, #d9ccf1) !important;
+  border-bottom: 2px dashed var(--jb-pink-400) !important;
+  padding: 16px 20px !important;
+}
+
+.card-body {
+  background: transparent !important;
+}
+
+/* =========================================================
+   تیترها
+   ========================================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--jb-pink-800);
+  font-weight: 800;
+}
+
+.page-title {
+  color: var(--jb-pink-800) !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 4px rgba(173, 146, 223, 0.3);
+}
+.page-title i {
+  color: var(--jb-fuchsia);
+}
+
+/* =========================================================
+   دکمه‌ها
+   ========================================================= */
+.btn {
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  transition: all 0.25s ease !important;
+  border: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.4) !important;
+}
+.btn-primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-600),
+    var(--jb-pink-800)
+  ) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147, 116, 201, 0.55) !important;
+}
+
+.btn-success {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-400),
+    var(--jb-pink-600)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.4) !important;
+}
+.btn-success:hover {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147, 116, 201, 0.55) !important;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffd88a, #ffb84d) !important;
+  color: #6e3a00 !important;
+  box-shadow: 0 6px 18px rgba(255, 184, 77, 0.4) !important;
+}
+.btn-warning:hover {
+  background: linear-gradient(135deg, #ffc75c, #ffa31a) !important;
+  color: #4a2600 !important;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(201, 24, 74, 0.4) !important;
+}
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ec2f66, #9d1842) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(201, 24, 74, 0.55) !important;
+}
+
+.btn-info {
+  background: linear-gradient(135deg, #b8a4ff, #8b6cff) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(139, 108, 255, 0.4) !important;
+}
+.btn-info:hover {
+  background: linear-gradient(135deg, #9d8aff, #6b4aff) !important;
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--jb-fuchsia) !important;
+  border: 2px solid var(--jb-pink-400) !important;
+  box-shadow: 0 4px 12px rgba(173, 146, 223, 0.3) !important;
+}
+.btn-outline-primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.btn-outline-secondary {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--jb-purple) !important;
+  border: 2px solid var(--jb-pink-200) !important;
+}
+.btn-outline-secondary:hover {
+  background: var(--jb-pink-200) !important;
+  color: var(--jb-pink-900) !important;
+}
+
+.btn-sm {
+  padding: 6px 12px !important;
+  font-size: 0.8rem !important;
+  border-radius: 10px !important;
+}
+
+/* =========================================================
+   فرم‌ها
+   ========================================================= */
+.form-control,
+.form-select,
+.b-form-input,
+.b-form-textarea,
+.b-form-select {
+  background: #ffffff !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  color: var(--jb-text) !important;
+  transition: all 0.25s ease !important;
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus,
+.b-form-input:focus,
+.b-form-textarea:focus,
+.b-form-select:focus {
+  background: #fff !important;
+  border-color: var(--jb-fuchsia) !important;
+  box-shadow: 0 0 0 4px rgba(147, 116, 201, 0.2) !important;
+  color: var(--jb-text) !important;
+}
+
+.form-control::placeholder,
+.b-form-input::placeholder,
+.b-form-textarea::placeholder {
+  color: var(--jb-text-muted) !important;
+}
+
+.form-label,
+.b-form-group label {
+  color: var(--jb-pink-800) !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+/* =========================================================
+   جدول
+   ========================================================= */
+.table {
+  --bs-table-bg: transparent;
+  color: var(--jb-text);
+  border-color: var(--jb-pink-200) !important;
+}
+
+.table thead th {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-400),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  border-color: var(--jb-fuchsia) !important;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  padding: 12px 10px !important;
+}
+
+.table tbody td {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: var(--jb-pink-200) !important;
+  vertical-align: middle;
+  font-size: 0.88rem;
+  padding: 12px 10px !important;
+  color: var(--jb-text);
+  font-weight: 600;
+}
+
+.table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.table tbody tr:hover td {
+  background: var(--jb-pink-100) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td {
+  background: rgba(236, 229, 248, 0.7) !important;
+}
+
+.table-bordered {
+  border-color: var(--jb-pink-200) !important;
+}
+
+/* =========================================================
+   بج‌ها
+   ========================================================= */
+.badge {
+  border-radius: 20px !important;
+  padding: 5px 12px !important;
+  font-weight: 800 !important;
+  font-size: 0.75rem !important;
+}
+
+.badge.bg-success {
+  background: linear-gradient(135deg, #4ade80, #16a34a) !important;
+  color: #fff !important;
+}
+
+.badge.bg-secondary {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-300),
+    var(--jb-pink-500)
+  ) !important;
+  color: #fff !important;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a) !important;
+  color: #fff !important;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #ffd88a, #ffb84d) !important;
+  color: #6e3a00 !important;
+}
+
+.badge.bg-primary {
+  background: linear-gradient(
+    135deg,
+    var(--jb-fuchsia),
+    var(--jb-pink-700)
+  ) !important;
+  color: #fff !important;
+}
+
+/* =========================================================
+   مودال / تب
+   ========================================================= */
+.modal-content {
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-300) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 25px 60px rgba(147, 116, 201, 0.3) !important;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  border-bottom: 2px dashed var(--jb-pink-700) !important;
+  color: #fff !important;
+}
+.modal-header .modal-title,
+.modal-header h5 {
+  color: #fff !important;
+}
+
+.modal-footer {
+  background: linear-gradient(135deg, #ece5f8, #d9ccf1) !important;
+  border-top: 2px dashed var(--jb-pink-400) !important;
+}
+
+.nav-pills .nav-link {
+  color: var(--jb-text-soft) !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  transition: all 0.25s ease !important;
+}
+.nav-pills .nav-link:hover {
+  background: var(--jb-pink-100) !important;
+  color: var(--jb-pink-800) !important;
+}
+.nav-pills .nav-link.active {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.4) !important;
+}
+
+/* =========================================================
+   Treeselect
+   ========================================================= */
+.vue-treeselect__control {
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 12px !important;
+  min-height: 42px;
+  padding: 4px 8px;
+}
+.vue-treeselect__control--is-focused {
+  border-color: var(--jb-fuchsia) !important;
+  box-shadow: 0 0 0 4px rgba(147, 116, 201, 0.2) !important;
+}
+.vue-treeselect__menu {
+  border: 2px solid var(--jb-pink-300) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 30px rgba(147, 116, 201, 0.25) !important;
+  background: #fff !important;
+}
+.vue-treeselect__option--highlighted {
+  background: var(--jb-pink-100) !important;
+  color: var(--jb-pink-900) !important;
+}
+.vue-treeselect__option--selected {
+  background: var(--jb-pink-300) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+.vue-treeselect__multi-value-item {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+/* =========================================================
+   Pagination
+   ========================================================= */
+.pagination .page-link {
+  color: var(--jb-fuchsia) !important;
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 10px !important;
+  margin: 0 3px;
+  font-weight: 800;
+  transition: all 0.25s ease;
+}
+.pagination .page-link:hover {
+  background: var(--jb-pink-100) !important;
+  color: var(--jb-pink-800) !important;
+  transform: translateY(-2px);
+}
+.pagination .page-item.active .page-link {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.5) !important;
+}
+
+/* =========================================================
+   ⭐ سایدبار - تیره با کنتراست بالا ⭐
+   ========================================================= */
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    var(--jb-side-bg-1) 0%,
+    var(--jb-side-bg-2) 50%,
+    var(--jb-side-bg-3) 100%
+  ) !important;
+  color: var(--jb-side-text) !important;
+  border-left: 2px solid var(--jb-fuchsia);
+  box-shadow: -6px 0 30px rgba(31, 20, 51, 0.5) !important;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #281a3f;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--jb-fuchsia), var(--jb-pink-500));
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--jb-pink-400), var(--jb-fuchsia));
+}
+
+.logo-wrapper {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 2px dashed var(--jb-fuchsia) !important;
+}
+
+/* آیتم منوی اصلی */
+.menu-item {
+  color: var(--jb-side-text) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+}
+.menu-item i {
+  color: var(--jb-pink-300) !important;
+}
+.menu-item span {
+  color: var(--jb-side-text) !important;
+}
+
+.menu-item:hover {
+  background: rgba(147, 116, 201, 0.18) !important;
+  color: #fff !important;
+}
+.menu-item:hover i {
+  color: var(--jb-pink-400) !important;
+}
+.menu-item:hover span {
+  color: #fff !important;
+}
+
+.menu-item.active {
+  background: linear-gradient(
+    135deg,
+    var(--jb-side-active-1),
+    var(--jb-side-active-2)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(147, 116, 201, 0.5) !important;
+}
+.menu-item.active i {
+  color: #fff !important;
+}
+.menu-item.active span {
+  color: #fff !important;
+}
+
+a.nav-link {
+  color: var(--jb-side-text) !important;
+  background: transparent !important;
+}
+a.nav-link i {
+  color: var(--jb-pink-300) !important;
+}
+a.nav-link span {
+  color: var(--jb-side-text) !important;
+}
+a.nav-link:hover i {
+  color: var(--jb-pink-400) !important;
+}
+a.nav-link:hover span {
+  color: #fff !important;
+}
+
+/* گروه منو (والد زیرمنو) */
+.menu-group-btn {
+  color: var(--jb-side-text) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+}
+.menu-group-btn i {
+  color: var(--jb-pink-300) !important;
+}
+.menu-group-btn span {
+  color: var(--jb-side-text) !important;
+}
+
+.menu-group-btn:hover {
+  background: rgba(147, 116, 201, 0.18) !important;
+  color: #fff !important;
+}
+.menu-group-btn:hover i {
+  color: var(--jb-pink-400) !important;
+}
+.menu-group-btn:hover span {
+  color: #fff !important;
+}
+
+.menu-group-btn.has-active-child {
+  background: rgba(147, 116, 201, 0.28) !important;
+  color: var(--jb-pink-300) !important;
+  border-right: 3px solid var(--jb-pink-400);
+}
+.menu-group-btn.has-active-child i,
+.menu-group-btn.has-active-child span {
+  color: var(--jb-pink-300) !important;
+}
+
+/* زیرمنو */
+.submenu-wrapper {
+  background: rgba(0, 0, 0, 0.28) !important;
+  border-radius: 12px;
+  margin: 4px 12px;
+}
+
+.submenu-item {
+  color: var(--jb-side-text-soft) !important;
+  font-weight: 600 !important;
+  font-size: 0.83rem !important;
+}
+.submenu-item i {
+  color: var(--jb-pink-300) !important;
+}
+.submenu-item span {
+  color: var(--jb-side-text-soft) !important;
+}
+
+.submenu-item:hover {
+  background: rgba(147, 116, 201, 0.22) !important;
+  color: #fff !important;
+}
+.submenu-item:hover i {
+  color: var(--jb-pink-400) !important;
+}
+.submenu-item:hover span {
+  color: #fff !important;
+}
+
+.submenu-item.active {
+  background: linear-gradient(
+    135deg,
+    var(--jb-fuchsia),
+    var(--jb-pink-600)
+  ) !important;
+  color: #fff !important;
+  border-right: 3px solid #fff;
+}
+.submenu-item.active i {
+  color: #fff !important;
+}
+.submenu-item.active span {
+  color: #fff !important;
+}
+
+/* دکمه موبایل سایدبار */
+.mobile-toggle-btn {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(147, 116, 201, 0.55) !important;
+  border-radius: 12px !important;
+}
+.mobile-toggle-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-600),
+    var(--jb-pink-800)
+  ) !important;
+}
+
+/* =========================================================
+   Navbar تولبار
+   ========================================================= */
+#mainNavbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px dashed var(--jb-pink-400) !important;
+  box-shadow: 0 6px 22px rgba(147, 116, 201, 0.18) !important;
+}
+
+#mainNavbar .fw-bold,
+#mainNavbar span {
+  color: var(--jb-text) !important;
+}
+
+#mainNavbar .text-success {
+  color: var(--jb-fuchsia) !important;
+  font-weight: 900 !important;
+}
+
+.AddCharge {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.45) !important;
+}
+.AddCharge:hover {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-600),
+    var(--jb-pink-800)
+  ) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147, 116, 201, 0.6) !important;
+}
+
+/* =========================================================
+   کارت‌های موبایل محصولات
+   ========================================================= */
+.product-card {
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 30px rgba(147, 116, 201, 0.15) !important;
+}
+.product-card:hover {
+  box-shadow: 0 18px 40px rgba(147, 116, 201, 0.28) !important;
+  transform: translateY(-3px);
+  border-color: var(--jb-pink-400) !important;
+}
+
+.product-name {
+  color: var(--jb-pink-800) !important;
+}
+.product-id {
+  color: var(--jb-text-muted) !important;
+}
+
+.product-image-wrapper img {
+  border: 2px solid var(--jb-pink-300) !important;
+  border-radius: 14px !important;
+}
+
+.product-images-count {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  box-shadow: 0 4px 12px rgba(147, 116, 201, 0.45) !important;
+}
+
+.info-row > i {
+  color: var(--jb-fuchsia) !important;
+}
+.info-label {
+  color: var(--jb-text-soft) !important;
+}
+.info-value {
+  color: var(--jb-text) !important;
+}
+.price-value {
+  color: var(--jb-pink-700) !important;
+}
+
+.status-yes {
+  background: linear-gradient(135deg, #4ade80, #16a34a) !important;
+  color: #fff !important;
+}
+.status-no {
+  background: linear-gradient(135deg, #ffd88a, #ffb84d) !important;
+  color: #6e3a00 !important;
+}
+
+.discount-badge,
+.discount-badge-sm {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-400),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+}
+
+/* =========================================================
+   هدر صفحه لیست
+   ========================================================= */
+.header-card .card-header {
+  border-bottom: 2px dashed var(--jb-pink-400) !important;
+  background: linear-gradient(135deg, #ece5f8, #d9ccf1) !important;
+}
+
+.search-input:focus {
+  border-color: var(--jb-fuchsia) !important;
+  box-shadow: 0 0 0 4px rgba(147, 116, 201, 0.2) !important;
+}
+
+/* =========================================================
+   SweetAlert2
+   ========================================================= */
+.swal2-popup {
+  border-radius: 24px !important;
+  border: 2px solid var(--jb-pink-300) !important;
+  background: #fff !important;
+  box-shadow: 0 25px 60px rgba(147, 116, 201, 0.3) !important;
+  font-family: "Vazirmatn", sans-serif !important;
+}
+.swal2-title {
+  color: var(--jb-pink-800) !important;
+  font-weight: 900 !important;
+}
+.swal2-html-container {
+  color: var(--jb-text-soft) !important;
+}
+.swal2-confirm {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 18px rgba(147, 116, 201, 0.4) !important;
+}
+.swal2-cancel {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-200),
+    var(--jb-pink-300)
+  ) !important;
+  color: var(--jb-pink-900) !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   Toastify
+   ========================================================= */
+.Toastify__toast {
+  border-radius: 14px !important;
+  font-family: "Vazirmatn", sans-serif !important;
+  box-shadow: 0 12px 30px rgba(147, 116, 201, 0.3) !important;
+}
+.Toastify__toast--success {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+  color: #fff !important;
+}
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a) !important;
+  color: #fff !important;
+}
+
+/* =========================================================
+   Editor
+   ========================================================= */
+.ck-editor__editable,
+.ck.ck-editor__main > .ck-editor__editable {
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 0 0 12px 12px !important;
+  color: var(--jb-text) !important;
+  min-height: 220px;
+}
+.ck-editor__editable:focus {
+  border-color: var(--jb-fuchsia) !important;
+  box-shadow: 0 0 0 4px rgba(147, 116, 201, 0.18) !important;
+}
+.ck.ck-toolbar {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-200),
+    var(--jb-pink-100)
+  ) !important;
+  border: 2px solid var(--jb-pink-200) !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+/* =========================================================
+   VueFileAgent
+   ========================================================= */
+.vue-file-agent .grid {
+  border: 2px dashed var(--jb-pink-400) !important;
+  border-radius: 14px !important;
+  background: var(--jb-pink-50) !important;
+}
+
+/* =========================================================
+   Dropdown
+   ========================================================= */
+.dropdown-menu {
+  background: #fff !important;
+  border: 2px solid var(--jb-pink-300) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 40px rgba(147, 116, 201, 0.25) !important;
+}
+.dropdown-item {
+  color: var(--jb-text-soft) !important;
+  border-radius: 10px !important;
+  margin: 2px 6px;
+  font-weight: 600;
+}
+.dropdown-item:hover {
+  background: var(--jb-pink-100) !important;
+  color: var(--jb-pink-800) !important;
+}
+
+/* =========================================================
+   Spinner / Alert
+   ========================================================= */
+.spinner-border.text-primary {
+  color: var(--jb-fuchsia) !important;
+}
+
+.alert {
+  border-radius: 16px !important;
+  border: 2px solid var(--jb-pink-300) !important;
+  background: var(--jb-pink-50) !important;
+  color: var(--jb-pink-800) !important;
+  font-weight: 700;
+}
+
+/* =========================================================
+   ریسپانسیو
+   ========================================================= */
+@media (max-width: 991px) {
+  .sidebar {
+    background: linear-gradient(
+      180deg,
+      var(--jb-side-bg-1) 0%,
+      var(--jb-side-bg-2) 50%,
+      var(--jb-side-bg-3) 100%
+    ) !important;
+  }
+  .sidebar-open {
+    box-shadow: -8px 0 30px rgba(31, 20, 51, 0.6) !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    border-radius: 18px !important;
+  }
+  .page-title {
+    color: var(--jb-pink-800) !important;
+  }
+  .table thead th,
+  .table tbody td {
+    font-size: 0.8rem;
+    padding: 10px 8px !important;
+  }
+}
+
+.newbg {
+  background: linear-gradient(
+    135deg,
+    var(--jb-pink-500),
+    var(--jb-fuchsia)
+  ) !important;
+}

@@ -17,10 +17,10 @@ import "vue3-toastify/dist/index.css";
 import VueFileAgent from "@boindil/vue-file-agent-next";
 import Vue3PersianDatetimePicker from "vue3-persian-datetime-picker";
 import "@boindil/vue-file-agent-next/dist/vue-file-agent-next.css";
-// api.mahseti.shop
+// api.sormeh-online.com
 // 127.0.0.1:8000
-axios.defaults.baseURL = "https://api.mahseti.shop/api/v1/admin";
-window.baseImageAddress = "https://api.mahseti.shop/storage_public/";
+axios.defaults.baseURL = "https://api.sormeh-online.com/api/v1/admin";
+window.baseImageAddress = "https://api.sormeh-online.com/storage_public/";
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
