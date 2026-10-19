@@ -92,7 +92,13 @@
           </div>
 
           <div class="border-box">
-
+            <b-col cols="12">
+              <b-form-group>
+                <b-form-checkbox id="is_trend" v-model="form.is_trend" :true-value="1" :false-value="0">
+                  نمایش در لیست ترند
+                </b-form-checkbox>
+              </b-form-group>
+            </b-col>
             <div class="col-md-12 mb-3">
               <label class="form-label">تصویر اصلی</label>
               <VueFileAgent @select="imageLoaded" @beforedelete="imageRemoved" :maxFiles="1" accept=".jpg,.png"
@@ -344,6 +350,7 @@ const form = ref({
   meta_title: '',
   meta_description: '',
   status: '',
+  is_trend: false,
   sales_channel: 'both',
   discount_value: '',
   published_at: '',
@@ -502,7 +509,10 @@ async function saveStep1() {
         form.value.images.forEach((imgfile) => {
           formData.append('images[]', imgfile)
         })
-      } else if (key !== 'categories') {
+      } else if (key == 'is_trend') {
+        formData.append('is_trend', Number(form.value.is_trend))
+      }
+      else if (key !== 'categories') {
         formData.append(key, form.value[key])
       }
     })
@@ -661,6 +671,7 @@ async function saveStep3() {
 .g-3 {
   gap: 16px;
 }
+
 .steper {
   background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
   color: white !important;

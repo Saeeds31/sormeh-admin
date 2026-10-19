@@ -193,6 +193,12 @@ const menuItems = ref([
         link: "/products/specification",
         icon: "bi-table"
       },
+      {
+        name: "تصاویر مشتری",
+        permissions: ['customer_photos_view'],
+        link: "/products/customer-photo",
+        icon: "bi-image"
+      },
     ],
   },
   {

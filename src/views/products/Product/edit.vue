@@ -105,6 +105,13 @@
               <div class="border-box">
                 <b-col cols="12">
                   <b-form-group>
+                    <b-form-checkbox id="is_trend" v-model="form.is_trend" :true-value="1" :false-value="0">
+                      نمایش در لیست ترند
+                    </b-form-checkbox>
+                  </b-form-group>
+                </b-col>
+                <b-col cols="12">
+                  <b-form-group>
                     <b-form-checkbox id="status" v-model="form.is_rechargeable" :true-value="1" :false-value="0">
                       نمایش در لیست شارژ مجدد
                     </b-form-checkbox>
@@ -359,6 +366,7 @@ const form = ref({
   categories: [],
   main_image: '',
   is_rechargeable: false,
+  is_trend: false,
   meta_title: '',
   meta_description: '',
   status: '',
@@ -525,6 +533,7 @@ async function loadProduct() {
   Object.assign(form.value, {
     title: product.value.title,
     is_rechargeable: Number(product.value.is_rechargeable),
+    is_trend: Number(product.value.is_trend),
     description: product.value.description,
     categories: product.value.categories.map((c) => c.id),
     meta_title: product.value.meta_title,
@@ -700,6 +709,11 @@ async function saveStep1() {
 
         return
       }
+      if (key == 'is_trend') {
+        formData.append('is_trend', Number(form.value.is_trend))
+        return
+      }
+
       if (key === 'main_image') {
         if (mainImageChanged.value) {
           if (form.value.main_image) formData.append('main_image', form.value.main_image)

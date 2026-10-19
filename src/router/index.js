@@ -77,7 +77,11 @@ const routes = [
     name: "wallet/transactions",
     component: () => import("@/views/wallet/Transaction/list.vue"),
   },
-
+  {
+    path: "/products/customer-photo",
+    name: "products-customer-photo",
+    component: () => import("@/views/products/customerPhoto.vue"),
+  },
   {
     path: "/products/specification/create",
     name: "products-specification-create",
