@@ -90,6 +90,7 @@ const form = ref({
   type: '',
   button_text: '',
 })
+const errors = reactive({})
 
 function imageLoaded(files) {
   if (files.length) {
@@ -121,6 +122,9 @@ const fetchData = async () => {
 }
 
 const updateForm = async () => {
+
+  Object.keys(errors).forEach(k => delete errors[k])
+
   try {
     loading.value = true
     const formData = new FormData()
@@ -134,6 +138,8 @@ const updateForm = async () => {
     await axios.post(`/sliders/${route.params.id}`, formData)
     toast.success('اسلایدر با موفقیت بروزرسانی شد')
   } catch (e) {
+    Object.assign(errors, e.response.data.errors)
+
     toast.error('خطا در بروزرسانی اسلایدر')
   } finally {
     loading.value = false
