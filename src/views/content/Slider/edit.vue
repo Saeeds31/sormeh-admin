@@ -94,9 +94,9 @@ const errors = reactive({})
 
 function imageLoaded(files) {
   if (files.length) {
-    form.image = files[0].file
+    form.value.image = files[0].file
   } else {
-    form.image = '';
+    form.value.image = '';
   }
 }
 const loading = ref(false)
@@ -114,6 +114,7 @@ const fetchData = async () => {
           ext: res.data.data.image.split('.').pop(),
           url: `${baseImageAddress}${res.data.data.image}`,
         }];
+    form.value.image = ''
   } catch (e) {
     console.log(e);
 
@@ -131,8 +132,8 @@ const updateForm = async () => {
     for (let key in form.value) {
       if (form.value[key]) formData.append(key, form.value[key])
     }
-    if (form.image) {
-      formData.append("image", form.image);
+    if (form.value.image) {
+      formData.append("image", form.value.image);
     }
     formData.append("_method", "PUT");
     await axios.post(`/sliders/${route.params.id}`, formData)
