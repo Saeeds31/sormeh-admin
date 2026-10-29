@@ -17,18 +17,25 @@
             <!-- موبایل -->
             <div class="col-md-6">
                 <label class="form-label">شماره موبایل</label>
-                <input  v-model="form.mobile" type="text" class="form-control" required maxlength="11"
-                    minlength="11" />
+                <input v-model="form.mobile" type="text" class="form-control" required maxlength="11" minlength="11" />
                 <small v-if="errors.mobile" class="text-danger">{{ errors.mobile[0] }}</small>
             </div>
 
             <!-- رمز عبور -->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">رمز عبور (در صورت نیاز تغییر دهید)</label>
                 <input v-model="form.password" type="password" class="form-control" minlength="6" />
                 <small v-if="errors.password" class="text-danger">{{ errors.password[0] }}</small>
             </div>
+            <b-col cols="12" md="12">
+                <b-form-group label="تصویر" label-for="image">
+                    <VueFileAgent @update:raw-model-value="imageLoaded" :raw-model-value="oldImage" :maxFiles="1"
+                        accept=".webp,.jpg,.png" theme="grid" deletable sortable>
+                    </VueFileAgent>
 
+                    <small v-if="errors.avatar" class="text-danger">{{ errors.avatar[0] }}</small>
+                </b-form-group>
+            </b-col>
             <!-- کد ملی -->
             <div class="col-md-6">
                 <label class="form-label">کد ملی (اختیاری)</label>
@@ -70,15 +77,23 @@ const checkPermission = store.checkPermission;
 const route = useRoute()
 const router = useRouter()
 const errors = reactive({})
+const oldImage = ref([]);
 
 const form = ref({
     full_name: '',
     mobile: '',
     password: '',
+    avatar: '',
     national_code: '',
     birth_date: '',
 })
-
+function imageLoaded(files) {
+    if (files.length) {
+        form.value.image = files[0].file
+    } else {
+        form.value.image = '';
+    }
+}
 const loading = ref(false)
 
 const fetchData = async () => {
@@ -88,6 +103,15 @@ const fetchData = async () => {
         form.value.mobile = data.mobile
         form.value.national_code = data.national_code
         form.value.birth_date = data.birth_date
+        if (data.avatar)
+            oldImage.value =
+                [{
+                    name: data.avatar.split('/').pop(),
+                    size: 0,
+                    type: 'image/jpeg',
+                    ext: data.avatar.split('.').pop(),
+                    url: `${baseImageAddress}${data.avatar}`,
+                }];
     } catch (e) {
         toast.error('خطا در دریافت اطلاعات کاربر')
     }
@@ -101,6 +125,9 @@ const updateForm = async () => {
         const formData = new FormData()
         for (let key in form.value) {
             if (form.value[key]) formData.append(key, form.value[key])
+        }
+        if (form.value.avatar) {
+            formData.append("image", form.value.avatar);
         }
         formData.append("_method", "PUT")
         await axios.post(`/users/${route.params.id}`, formData)

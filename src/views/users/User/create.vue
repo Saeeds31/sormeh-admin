@@ -14,7 +14,13 @@
 
                 <small v-if="errors.full_name" class="text-danger">{{ errors.full_name[0] }}</small>
             </div>
-
+            <b-col cols="12" md="12">
+                <b-form-group label="تصویر (URL)">
+                    <VueFileAgent @select="imageLoaded" :maxFiles="1" accept=".webp,.jpg,.png" theme="grid" deletable
+                        sortable />
+                    <small class="text-danger" v-if="errors.avatar">{{ errors.avatar[0] }}</small>
+                </b-form-group>
+            </b-col>
             <!-- موبایل -->
             <div class="col-md-6">
                 <label class="form-label">شماره موبایل</label>
@@ -72,8 +78,11 @@ const form = ref({
     password: '',
     national_code: '',
     birth_date: '',
+    avatar: '',
 })
-
+function imageLoaded(files) {
+    form.value.avatar = files[0].file
+}
 const loading = ref(false)
 const errors = reactive({})
 
@@ -94,6 +103,7 @@ const submitForm = async () => {
             password: '',
             national_code: '',
             birth_date: '',
+            avatar: '',
         }
     } catch (err) {
         Object.assign(errors, err.response.data.errors)
