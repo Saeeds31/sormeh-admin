@@ -660,7 +660,8 @@ async function loadProduct() {
   if (product.value.specifications && product.value.specifications.length) {
     product.value.specifications.forEach((item) => {
       let minimalObj = item;
-      minimalObj.values = specification.value.find(it => it.id == item.id)?.values || []
+      let mainValues = specification.value.find(it => it.id == item.id)?.values || [];
+      minimalObj.values=mainValues.filter((val)=>item.values.includes(val.id))
       selectedSpecification.value.push(minimalObj);
       selectedSpecificationValues[item.id] = item.values;
     })
