@@ -89,9 +89,9 @@ const form = ref({
 })
 function imageLoaded(files) {
     if (files.length) {
-        form.value.image = files[0].file
+        form.value.avatar = files[0].file
     } else {
-        form.value.image = '';
+        form.value.avatar = '';
     }
 }
 const loading = ref(false)

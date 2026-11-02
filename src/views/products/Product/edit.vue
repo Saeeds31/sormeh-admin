@@ -108,6 +108,12 @@
                   <input v-model="form.slug" type="text" class="form-control" />
                   <span v-if="errors.step1.slug" class="text-danger">{{ errors.step1.slug[0] }}</span>
                 </div>
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">آستانه کم بود موجودی</label>
+                  <input v-model="form.low_stock_threshold" type="text" class="form-control" />
+                  <span v-if="errors.step1.low_stock_threshold" class="text-danger">{{
+                    errors.step1.low_stock_threshold[0] }}</span>
+                </div>
                 <b-col cols="12">
                   <b-form-group>
                     <b-form-checkbox id="is_trend" v-model="form.is_trend" :true-value="1" :false-value="0">
@@ -367,6 +373,7 @@ const steps = ref([
 const form = ref({
   title: '',
   slug: '',
+  low_stock_threshold:'',
   images: [],
   description: '',
   categories: [],
@@ -559,6 +566,7 @@ async function loadProduct() {
   Object.assign(form.value, {
     title: product.value.title,
     slug: product.value.slug,
+    low_stock_threshold: product.value.low_stock_threshold,
     is_rechargeable: Number(product.value.is_rechargeable),
     is_trend: Number(product.value.is_trend),
     description: product.value.description,
@@ -661,7 +669,7 @@ async function loadProduct() {
     product.value.specifications.forEach((item) => {
       let minimalObj = item;
       let mainValues = specification.value.find(it => it.id == item.id)?.values || [];
-      minimalObj.values=mainValues.filter((val)=>item.values.includes(val.id))
+      minimalObj.values = mainValues.filter((val) => item.values.includes(val.id))
       selectedSpecification.value.push(minimalObj);
       selectedSpecificationValues[item.id] = item.values;
     })

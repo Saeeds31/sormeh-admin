@@ -83,6 +83,11 @@ const routes = [
     component: () => import("@/views/products/customerPhoto.vue"),
   },
   {
+    path: "/products/low-stock",
+    name: "products-LowStockPage",
+    component: () => import("@/views/products/Product/LowStockPage.vue"),
+  },
+  {
     path: "/products/specification/create",
     name: "products-specification-create",
     component: () => import("@/views/products/Specification/create.vue"),

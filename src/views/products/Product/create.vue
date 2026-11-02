@@ -98,6 +98,11 @@
               <input v-model="form.slug" type="text" class="form-control" />
               <span v-if="errors.step1.slug" class="text-danger">{{ errors.step1.slug[0] }}</span>
             </div>
+                  <div class="col-md-12 mb-3">
+              <label class="form-label">آستانه کم بود موجودی</label>
+              <input v-model="form.low_stock_threshold" type="text" class="form-control" />
+              <span v-if="errors.step1.low_stock_threshold" class="text-danger">{{ errors.step1.low_stock_threshold[0] }}</span>
+            </div>
             <b-col cols="12">
               <b-form-group>
                 <b-form-checkbox id="is_trend" v-model="form.is_trend" :true-value="1" :false-value="0">
@@ -349,6 +354,7 @@ const steps = ref([
 
 const form = ref({
   title: '',
+  low_stock_threshold:'',
   slug: '',
   images: [],
   description: '',
