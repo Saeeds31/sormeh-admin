@@ -294,6 +294,26 @@ const menuItems = ref([
     ],
   },
   {
+    name: "باشگاه مشتریان",
+    icon: "bi-coin",
+    permissions: ['club_view'],
+    children: [
+      {
+        name: "کاربران",
+        permissions: ['club_view'],
+        link: "/club/users",
+        icon: "bi-list"
+      },
+     {
+        name: "تنظیمات",
+        permissions: ['club_store'],
+        link: "/club/users",
+        icon: "bi-gear"
+      },
+
+    ],
+  },
+  {
     name: "مکان‌ها",
     permissions: ['city_view', 'province_view'],
     icon: "bi-building",

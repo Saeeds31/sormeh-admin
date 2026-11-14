@@ -82,6 +82,24 @@ const routes = [
     name: "products-customer-photo",
     component: () => import("@/views/products/customerPhoto.vue"),
   },
+
+  {
+    path: "/club/users",
+    name: "club-users",
+    component: () => import("@/views/club/users.vue"),
+  },
+  
+  {
+    path: "/club/settings",
+    name: "club-settings",
+    component: () => import("@/views/club/settings.vue"),
+  },
+  
+  {
+    path: "/club/users/:id",
+    name: "club-users-detail",
+    component: () => import("@/views/club/userDetail.vue"),
+  },
   {
     path: "/products/low-stock",
     name: "products-LowStockPage",
