@@ -8,7 +8,7 @@
                     <b-form-input v-model="form.title" type="text" class="form-control" required />
                     <b-form-invalid-feedback v-if="errors.title">{{ errors.title[0] }}</b-form-invalid-feedback>
                 </div>
-                <div class="col-md-12 mt-5">
+                <div v-if="!form.is_free" class="col-md-12 mt-5">
                     <label class="form-label">
                         مبلغ قابل پرداخت
                         <span v-if="form.cost">
@@ -31,10 +31,20 @@
                 <label class="form-label">توضیحات روش</label>
                 <b-form-textarea v-model="form.description"></b-form-textarea>
             </div>
-            <div class="col-md-6">
-                <div class="form-check mt-4">
+            <div class="col-md-12 row d-flex">
+                <div class="form-check mt-4 col-md-4">
                     <b-form-checkbox id="status" v-model="form.status" :true-value="1" :false-value="0">
                         فعال
+                    </b-form-checkbox>
+                </div>
+                <div class="form-check mt-4 col-md-4">
+                    <b-form-checkbox id="for_club" v-model="form.for_club" :true-value="1" :false-value="0">
+                        متعلق به باشگاه
+                    </b-form-checkbox>
+                </div>
+                <div class="form-check mt-4 col-md-4">
+                    <b-form-checkbox id="is_free" v-model="form.is_free" :true-value="1" :false-value="0">
+                        ارسال رایگان
                     </b-form-checkbox>
                 </div>
             </div>
@@ -94,7 +104,8 @@
                     </div>
 
                     <div class="col-md-3">
-                        <button class="btn btn-danger" type="button" @click="removeindex(index)">     <i class="bi bi-trash3-fill"></i>
+                        <button class="btn btn-danger" type="button" @click="removeindex(index)"> <i
+                                class="bi bi-trash3-fill"></i>
                             <span>حذف</span></button>
                     </div>
                 </div>
@@ -128,6 +139,8 @@ const form = ref({
     description: '',
     cost: null,
     status: false,
+    is_free: false,
+    for_club: false,
     icon: false,
 })
 const conditions = ref([{ condition: "", type: "", value: "" }])
@@ -170,8 +183,10 @@ function shippingTypeHandler(shippingCondition) {
 const submitForm = async () => {
     const formData = new FormData()
     for (const key in form.value) {
-        formData.append(key, key == 'status' ? Number(form.value[key]) : form.value[key])
+        if (key != 'cost')
+            formData.append(key, key == 'status' || key == 'for_club' || key == 'is_free' ? Number(form.value[key]) : form.value[key])
     }
+    formData.append("cost", !form.value.is_free ? form.value.cost : 0);
     conditions.value.forEach((shipp, index) => {
         formData.append(`conditions[${index}][condition]`, shipp.condition)
         formData.append(`conditions[${index}][type]`, shippingTypeHandler(shipp))
@@ -181,7 +196,7 @@ const submitForm = async () => {
         loading.value = true
         await axios.post('/shipping-methods', formData)
         toast.success('روش حمل و نقل با موفقیت ایجاد شد')
-        form.value = { name: '', description: '', default_cost: null, status: false }
+        form.value = { name: '', description: '', default_cost: null, status: false, is_free: false, for_club: false }
     } catch (e) {
         toast.error('خطایی در ثبت داده به وجود آمده است')
     } finally {

@@ -6,13 +6,8 @@
       <div class="card-body p-2 p-md-3">
         <div class="row g-2">
           <div class="col-12 col-sm-8 col-md-4">
-            <input
-              v-model="filters.search"
-              @keyup.enter="fetchData"
-              type="text"
-              class="form-control search-input"
-              placeholder="جستجو بر اساس نام"
-            />
+            <input v-model="filters.search" @keyup.enter="fetchData" type="text" class="form-control search-input"
+              placeholder="جستجو بر اساس نام" />
           </div>
           <div class="col-12 col-sm-4 col-md-2">
             <button @click="fetchData" class="btn btn-primary w-100 search-btn">
@@ -56,6 +51,7 @@
                     <th>توضیحات</th>
                     <th class="text-center">هزینه</th>
                     <th class="text-center">وضعیت</th>
+                    <th class="text-center">باشگاه</th>
                     <th class="text-center">عملیات</th>
                   </tr>
                 </thead>
@@ -70,12 +66,15 @@
                       </span>
                     </td>
                     <td class="text-center">
-                      <span
-                        class="status-badge"
-                        :class="method.status ? 'status-active' : 'status-inactive'"
-                      >
+                      <span class="status-badge" :class="method.status ? 'status-active' : 'status-inactive'">
                         <i class="bi" :class="method.status ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
                         {{ method.status ? 'فعال' : 'غیرفعال' }}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <span class="status-badge" :class="method.for_club ? 'status-active' : 'status-inactive'">
+                        <i class="bi" :class="method.for_club ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                        {{ method.for_club ? 'فعال' : 'غیرفعال' }}
                       </span>
                     </td>
                     <td>
@@ -97,12 +96,8 @@
 
             <!-- ===== کارت موبایل ===== -->
             <div class="d-md-none method-cards">
-              <div
-                v-for="method in shippingMethods"
-                :key="method.id"
-                class="method-card"
-                :class="{ 'inactive-card': !method.status }"
-              >
+              <div v-for="method in shippingMethods" :key="method.id" class="method-card"
+                :class="{ 'inactive-card': !method.status }">
                 <div class="method-card-header">
                   <div class="method-icon">
                     <i class="bi bi-truck"></i>
@@ -111,13 +106,16 @@
                     <div class="method-name">{{ method.title }}</div>
                     <div class="method-id">شناسه: #{{ method.id }}</div>
                   </div>
-                  <span
-                    class="status-badge-sm"
-                    :class="method.status ? 'status-active' : 'status-inactive'"
-                  >
-                    <i class="bi" :class="method.status ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
-                    {{ method.status ? 'فعال' : 'غیرفعال' }}
-                  </span>
+                  <div class="d-flex flex-column gap-2">
+                    <span class="status-badge-sm" :class="method.status ? 'status-active' : 'status-inactive'">
+                      <i class="bi" :class="method.status ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                      {{ method.status ? 'فعال' : 'غیرفعال' }}
+                    </span>
+                    <span class="status-badge-sm" :class="method.for_club ? 'status-active' : 'status-inactive'">
+                      <i class="bi" :class="method.for_club ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                      باشگاه
+                    </span>
+                  </div>
                 </div>
 
                 <div class="method-card-body">
@@ -417,7 +415,7 @@ onMounted(() => {
   font-size: 0.85rem;
 }
 
-.info-row > i {
+.info-row>i {
   color: #6c5ce7;
   font-size: 0.95rem;
   width: 18px;
@@ -450,7 +448,7 @@ onMounted(() => {
   align-items: flex-start;
 }
 
-.desc-row > i {
+.desc-row>i {
   margin-top: 3px;
 }
 

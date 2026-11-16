@@ -9,7 +9,7 @@
           <b-form-input v-model="form.title" type="text" class="form-control" required />
           <b-form-invalid-feedback v-if="errors.title">{{ errors.title[0] }}</b-form-invalid-feedback>
         </div>
-        <div class="col-md-12 mt-5">
+        <div v-if="!form.is_free" class="col-md-12 mt-5">
           <label class="form-label">
             مبلغ قابل پرداخت
             <span v-if="form.cost">
@@ -32,10 +32,20 @@
         <label class="form-label">توضیحات روش</label>
         <b-form-textarea v-model="form.description"></b-form-textarea>
       </div>
-      <div class="col-md-6">
-        <div class="form-check mt-4">
+      <div class="col-md-12 row d-flex">
+        <div class="form-check mt-4 col-md-4">
           <b-form-checkbox id="status" v-model="form.status" :true-value="1" :false-value="0">
             فعال
+          </b-form-checkbox>
+        </div>
+        <div class="form-check mt-4 col-md-4">
+          <b-form-checkbox id="for_club" v-model="form.for_club" :true-value="1" :false-value="0">
+            متعلق به باشگاه مشتریان
+          </b-form-checkbox>
+        </div>
+        <div class="form-check mt-4 col-md-4">
+          <b-form-checkbox id="is_free" v-model="form.is_free" :true-value="1" :false-value="0">
+            ارسال رایگان
           </b-form-checkbox>
         </div>
       </div>
@@ -141,6 +151,8 @@ const form = ref({
   cost: null,
   icon: null,
   status: false,
+  for_club: false,
+  is_free: false,
 })
 function imageLoaded(files) {
   if (files.length) {
@@ -198,6 +210,8 @@ const fetchData = async () => {
         }];
     }
     form.value.status = Number(data.data.status);
+    form.value.for_club = Number(data.data.for_club);
+    form.value.is_free = Number(data.data.is_free);
     if (data.data.conditions) {
       conditions.value = data.data.conditions
     }
@@ -224,10 +238,11 @@ const updateForm = async () => {
     loading.value = true
     const formData = new FormData()
     for (const key in form.value) {
-      if (key != 'icon') {
-        formData.append(key, key == 'status' ? Number(form.value[key]) : form.value[key])
+      if (key != 'icon' && key != 'cost') {
+        formData.append(key, key == 'status' || key == 'for_club' || key == 'is_free' ? Number(form.value[key]) : form.value[key])
       }
     }
+    formData.append("cost", !form.value.is_free ? form.value.cost : 0);
     formData.append("_method", "PUT");
     if (form.value.icon) {
       formData.append("icon", form.value.icon);
