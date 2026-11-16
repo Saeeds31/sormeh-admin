@@ -10,7 +10,8 @@
 
         <div class="card mb-2 header-card">
             <div class="card-header">
-                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2">
+                <div
+                    class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2">
                     <h3 class="mb-0 page-title">
                         <i class="bi bi-gear-fill"></i>
                         <span>تنظیمات باشگاه مشتریان</span>
@@ -38,12 +39,8 @@
                         <div class="text-muted small">در صورت غیرفعال بودن، امتیازدهی و تخفیف‌ها اعمال نمی‌شوند.</div>
                     </div>
                     <div class="form-check form-switch">
-                        <input
-                            class="form-check-input switch-lg"
-                            type="checkbox"
-                            :checked="boolOf('club.enabled')"
-                            @change="setValue('club.enabled', $event.target.checked ? 1 : 0)"
-                        />
+                        <input class="form-check-input switch-lg" type="checkbox" :checked="boolOf('club.enabled')"
+                            @change="setValue('club.enabled', $event.target.checked ? 1 : 0)" />
                     </div>
                 </div>
             </div>
@@ -57,21 +54,34 @@
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
                             <label class="form-label">مبلغ لازم برای هر امتیاز (تومان)</label>
-                            <input
-                                type="number" min="1" class="form-control"
-                                :value="numOf('club.point_rate_amount')"
-                                @input="setValue('club.point_rate_amount', $event.target.value)"
-                            />
+                            <input type="number" min="1" class="form-control" :value="numOf('club.point_rate_amount')"
+                                @input="setValue('club.point_rate_amount', $event.target.value)" />
                             <small class="text-muted">مثلاً ۱۰۰٫۰۰۰ تومان</small>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label">تعداد کوین به ازای هر مبلغ</label>
-                            <input
-                                type="number" min="1" class="form-control"
-                                :value="numOf('club.point_rate_coins')"
-                                @input="setValue('club.point_rate_coins', $event.target.value)"
-                            />
+                            <input type="number" min="1" class="form-control" :value="numOf('club.point_rate_coins')"
+                                @input="setValue('club.point_rate_coins', $event.target.value)" />
                             <small class="text-muted">مثلاً هر ۱۰۰٫۰۰۰ تومان = ۱ کوین</small>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">امتیاز تکمیل پروفایل</label>
+                            <input type="number" min="0" class="form-control"
+                                :value="numOf('club.profile_completion_points')"
+                                @input="setValue('club.profile_completion_points', $event.target.value)" />
+                            <small class="text-muted">
+                                امتیازی که با تکمیل پروفایل (نام، کد ملی، تاریخ تولد) به کاربر داده می‌شود. صفر =
+                                غیرفعال.
+                            </small>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">امتیاز تکمیل انتخاب سلیقه/مشخصات</label>
+                            <input type="number" min="0" class="form-control"
+                                :value="numOf('club.preferences_completion_points')"
+                                @input="setValue('club.preferences_completion_points', $event.target.value)" />
+                            <small class="text-muted">
+                                امتیازی که با تکمیل انتخاب سلیقه/مشخصات به کاربر داده می‌شود. صفر = غیرفعال.
+                            </small>
                         </div>
                     </div>
 
@@ -95,30 +105,23 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label">حداقل امتیاز</label>
-                                <input
-                                    type="number" min="0" class="form-control"
-                                    :value="numOf(`club.${lv.key}_min`)"
-                                    @input="setValue(`club.${lv.key}_min`, $event.target.value)"
-                                />
+                                <input type="number" min="0" class="form-control" :value="numOf(`club.${lv.key}_min`)"
+                                    @input="setValue(`club.${lv.key}_min`, $event.target.value)" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">درصد تخفیف</label>
                                 <div class="input-group">
-                                    <input
-                                        type="number" min="0" max="100" step="0.1" class="form-control"
+                                    <input type="number" min="0" max="100" step="0.1" class="form-control"
                                         :value="numOf(`club.${lv.key}_discount`)"
-                                        @input="setValue(`club.${lv.key}_discount`, $event.target.value)"
-                                    />
+                                        @input="setValue(`club.${lv.key}_discount`, $event.target.value)" />
                                     <span class="input-group-text">٪</span>
                                 </div>
                             </div>
                             <div>
                                 <label class="form-label">ارسال رایگان در ماه</label>
-                                <input
-                                    type="number" min="0" class="form-control"
+                                <input type="number" min="0" class="form-control"
                                     :value="numOf(`club.${lv.key}_free_shipping`)"
-                                    @input="setValue(`club.${lv.key}_free_shipping`, $event.target.value)"
-                                />
+                                    @input="setValue(`club.${lv.key}_free_shipping`, $event.target.value)" />
                                 <small class="text-muted">تعداد دفعات مجاز در هر ماه</small>
                             </div>
                         </div>
@@ -154,8 +157,8 @@ const saving = ref(false);
 const values = ref({});
 
 const levelCards = [
-    { key: 'bronze',   label: 'برنز' },
-    { key: 'gold',     label: 'گلد' },
+    { key: 'bronze', label: 'برنز' },
+    { key: 'gold', label: 'گلد' },
     { key: 'platinum', label: 'پلاتینیوم' },
 ];
 
@@ -240,9 +243,17 @@ onMounted(load);
     padding: 14px 16px;
 }
 
-.header-bronze   { background: linear-gradient(135deg, #cd7f32, #e0a96d); }
-.header-gold     { background: linear-gradient(135deg, #d4a017, #f5c542); }
-.header-platinum { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+.header-bronze {
+    background: linear-gradient(135deg, #cd7f32, #e0a96d);
+}
+
+.header-gold {
+    background: linear-gradient(135deg, #d4a017, #f5c542);
+}
+
+.header-platinum {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+}
 
 .form-label {
     font-weight: 600;
