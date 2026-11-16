@@ -4,7 +4,8 @@
     <!-- هدر -->
     <div class="card mb-2 header-card">
       <div class="card-header">
-        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2">
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2">
           <h3 class="mb-0 page-title">
             <i class="bi bi-table"></i>
             <span>مدیریت مشخصه</span>
@@ -40,6 +41,7 @@
                     <th class="text-center">#</th>
                     <th>عنوان مشخصه</th>
                     <th class="text-center">تعداد مقادیر</th>
+                    <th class="text-center">پروفایل زیبایی</th>
                     <th class="text-center">عملیات</th>
                   </tr>
                 </thead>
@@ -51,6 +53,12 @@
                       <span class="values-count">
                         <i class="bi bi-list-ul"></i>
                         {{ spec.values.length }}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <span class="status-badge" :class="spec.is_system ? 'status-active' : 'status-inactive'">
+                        <i class="bi" :class="spec.is_system ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                        {{ spec.is_system ? 'فعال' : 'غیرفعال' }}
                       </span>
                     </td>
                     <td>
@@ -72,11 +80,7 @@
 
             <!-- ===== کارت موبایل ===== -->
             <div class="d-md-none spec-cards">
-              <div
-                v-for="spec in specifications.data"
-                :key="spec.id"
-                class="spec-card"
-              >
+              <div v-for="spec in specifications.data" :key="spec.id" class="spec-card">
                 <div class="spec-card-header">
                   <div class="spec-icon">
                     <i class="bi bi-table"></i>
@@ -94,6 +98,19 @@
                     <span class="info-value">{{ spec.values.length }}</span>
                   </div>
                 </div>
+                <div class="spec-card-body">
+                  <div class="info-row">
+                    <i class="bi bi-list-ul"></i>
+                    <span class="info-label">پروفایل زیبایی:</span>
+                    <span class="info-value">
+                      <span class="status-badge-sm" :class="spec.is_system ? 'status-active' : 'status-inactive'">
+                        <i class="bi" :class="spec.is_system ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                      </span>
+                    </span>
+
+                  </div>
+                </div>
+
 
                 <div class="spec-card-actions">
                   <router-link :to="`/products/specification/${spec.id}/edit`" class="btn btn-sm btn-info flex-fill">
@@ -114,7 +131,8 @@
 
     <!-- Pagination -->
     <b-pagination v-model="currentPage" :total-rows="specifications.total" v-if="specifications.last_page != 1"
-      :per-page="specifications.per_page" @Update:modelValue="changePage" align="center" class="mt-3 pagination-responsive"></b-pagination>
+      :per-page="specifications.per_page" @Update:modelValue="changePage" align="center"
+      class="mt-3 pagination-responsive"></b-pagination>
 
   </div>
 </template>
@@ -320,7 +338,7 @@ onMounted(() => {
   font-size: 0.85rem;
 }
 
-.info-row > i {
+.info-row>i {
   color: #3b82f6;
   font-size: 0.95rem;
   width: 18px;
