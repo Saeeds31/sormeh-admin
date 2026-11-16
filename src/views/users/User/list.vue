@@ -312,7 +312,7 @@ const openBeautyModal = async (user) => {
     };
 
     try {
-        const { data } = await axios.get(`/admin/users/${user.id}/beauty-profile`);
+        const { data } = await axios.get(`/users/${user.id}/beauty-profile`);
 
         beautyModal.value.hasProfile = !!data.has_profile;
         beautyModal.value.items = data.data || [];
