@@ -56,6 +56,10 @@
                                     <td>{{ user.birth_date ?? '-' }}</td>
                                     <td>
                                         <div class="d-flex flex-wrap gap-1">
+                                            <button class="btn btn-sm beauty-btn" @click="openBeautyModal(user)">
+                                                <i class="bi bi-stars"></i>
+                                                <span>پروفایل زیبایی</span>
+                                            </button>
                                             <router-link :to="`/users/${user.id}/addresses`" class="btn btn-sm btn-success">
                                                 <i class="bi bi-house"></i>
                                                 <span>آدرس ها</span>
@@ -106,6 +110,10 @@
                             </div>
 
                             <div class="user-card-actions">
+                                <button class="btn btn-sm beauty-btn flex-fill" @click="openBeautyModal(user)">
+                                    <i class="bi bi-stars"></i>
+                                    <span>زیبایی</span>
+                                </button>
                                 <router-link :to="`/users/${user.id}/addresses`" class="btn btn-sm btn-success flex-fill">
                                     <i class="bi bi-house"></i>
                                     <span>آدرس‌ها</span>
@@ -141,6 +149,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===== مودال پروفایل زیبایی ===== -->
+        <Modal
+            v-if="beautyModal.show"
+            title="پروفایل زیبایی کاربر"
+            @closeModal="closeBeautyModal"
+            hide-footer
+        >
+            <div v-if="beautyModal.user" class="mb-3">
+                <strong>{{ beautyModal.user.full_name ?? 'بدون نام' }}</strong>
+                <span class="text-muted d-block small">{{ beautyModal.user.mobile }}</span>
+                <span class="text-muted d-block small">شناسه: #{{ beautyModal.user.id }}</span>
+            </div>
+
+            <div v-if="beautyModal.loading" class="text-center my-4">
+                <div class="spinner-border spinner-border-sm"></div>
+                <p class="mt-2 small text-muted">در حال دریافت اطلاعات...</p>
+            </div>
+
+            <div v-else-if="!beautyModal.hasProfile" class="text-center py-4 text-muted">
+                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                <p>کاربر هنوز پروفایل زیبایی خود را تکمیل نکرده است.</p>
+            </div>
+
+            <div v-else class="beauty-profile-list">
+                <div v-for="item in beautyModal.items" :key="item.specification_id" class="beauty-item">
+                    <div class="beauty-item-title">
+                        <i class="bi bi-tag-fill"></i>
+                        <span>{{ item.title }}</span>
+                    </div>
+                    <div class="beauty-item-value">{{ item.value }}</div>
+                </div>
+            </div>
+
+            <div class="text-end mt-3">
+                <button class="btn btn-secondary btn-sm" @click="closeBeautyModal">بستن</button>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -150,6 +196,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useRoute, useRouter } from "vue-router";
 import { useAdmin } from '@/stores/modules/admin';
+import Modal from "@/components/shared/modal.vue";
 
 const store = useAdmin();
 const checkPermission = store.checkPermission;
@@ -162,6 +209,15 @@ const currentPage = ref(1);
 
 let abortController = null;
 let searchDebounce = null;
+
+// ===== state مودال زیبایی =====
+const beautyModal = ref({
+    show: false,
+    loading: false,
+    hasProfile: false,
+    items: [],
+    user: null,
+});
 
 // ===== ساخت query string از state =====
 const buildQuery = (page = 1, search = "") => {
@@ -245,6 +301,38 @@ const confirmDelete = (id) => {
     });
 };
 
+// ===== مودال پروفایل زیبایی =====
+const openBeautyModal = async (user) => {
+    beautyModal.value = {
+        show: true,
+        loading: true,
+        hasProfile: false,
+        items: [],
+        user,
+    };
+
+    try {
+        const { data } = await axios.get(`/admin/users/${user.id}/beauty-profile`);
+
+        beautyModal.value.hasProfile = !!data.has_profile;
+        beautyModal.value.items = data.data || [];
+    } catch (e) {
+        console.error(e);
+        Swal.fire(
+            'خطا',
+            e?.response?.data?.message || 'دریافت پروفایل زیبایی با مشکل مواجه شد.',
+            'error'
+        );
+        beautyModal.value.show = false;
+    } finally {
+        beautyModal.value.loading = false;
+    }
+};
+
+const closeBeautyModal = () => {
+    beautyModal.value.show = false;
+};
+
 // ===== واکنش به تغییرات URL (back/forward مرورگر) =====
 watch(
     () => route.query,
@@ -323,6 +411,30 @@ onMounted(() => {
 .table tbody td {
     vertical-align: middle;
     font-size: 0.9rem;
+}
+
+/* ===== دکمهٔ پروفایل زیبایی ===== */
+.beauty-btn {
+    background: linear-gradient(135deg, #e84393, #fd79a8);
+    color: #fff;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(232, 67, 147, 0.35);
+}
+
+.beauty-btn:hover {
+    background: linear-gradient(135deg, #d63384, #e84393);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(232, 67, 147, 0.45);
+}
+
+.beauty-btn i {
+    font-size: 0.95rem;
 }
 
 /* ===== کارت‌های موبایل ===== */
@@ -415,6 +527,7 @@ onMounted(() => {
     gap: 6px;
     padding-top: 10px;
     border-top: 1px solid #f0f0f0;
+    flex-wrap: wrap;
 }
 
 .user-card-actions .btn {
@@ -435,6 +548,58 @@ onMounted(() => {
 .pagination-responsive {
     flex-wrap: wrap;
     justify-content: center;
+}
+
+/* ===== لیست پروفایل زیبایی در مودال ===== */
+.beauty-profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.beauty-item {
+    background: linear-gradient(135deg, #fff5f8, #fef0f5);
+    border: 1px solid #fbe2eb;
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.beauty-item:hover {
+    border-color: #fd79a8;
+    box-shadow: 0 2px 10px rgba(232, 67, 147, 0.15);
+}
+
+.beauty-item-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.beauty-item-title i {
+    color: #e84393;
+    font-size: 0.85rem;
+}
+
+.beauty-item-value {
+    font-weight: 700;
+    color: #2d3436;
+    font-size: 0.95rem;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #fbe2eb;
+    white-space: nowrap;
 }
 
 /* ========================================= */
@@ -468,6 +633,17 @@ onMounted(() => {
     /* نمایش label دکمه‌ها در موبایل */
     .user-card-actions .btn span {
         display: inline;
+    }
+
+    .beauty-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .beauty-item-value {
+        align-self: stretch;
+        text-align: center;
     }
 }
 
